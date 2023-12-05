@@ -1,0 +1,71 @@
+set exrc
+set secure
+set number
+set nocp
+execute pathogen#infect()
+
+syntax on
+filetype plugin indent on
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set linebreak
+set modeline
+set smartindent
+"set noexpandtab
+
+set incsearch
+set hlsearch
+set hidden
+set ignorecase
+" set splitright
+set complete-=i
+
+
+" turn of entering Ex mode
+map q: <Nop>
+nnoremap Q <nop>
+
+" jk = esc
+inoremap jk <esc>
+nnoremap <space> }zz
+nnoremap <CR> {zz
+nnoremap <TAB> $
+nnoremap * *N
+
+" open-close NerdTree
+map <c-n> :NERDTreeToggle<cr>
+" open a NERDTree automatically when vim starts up if no files were specified
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" move tab to the left/right
+nnoremap g- :tabm -1<CR>
+nnoremap g= :tabm +1<CR>
+
+" navigating woindows up down left right
+nmap <silent> <C-k> :wincmd k<CR>
+nmap <silent> <C-j> :wincmd j<CR>
+nmap <silent> <C-h> :wincmd h<CR>
+nmap <silent> <C-l> :wincmd l<CR>
+
+
+
+" ============================================
+" Function keys commands
+" ============================================
+
+" F2 save file:
+nnoremap <F2> <esc>:w<CR>
+inoremap <F2> <esc>:w<CR>
+" F3 open default vimrc
+nnoremap <F3> <esc>:tabe ~/.vimrc<CR>
+inoremap <F3> <esc>:tabe ~/.vimrc<CR>
+
+" F4 close file
+nnoremap <F4> <ESC>:q<CR>
+inoremap <F4> <ESC>:q<CR>
+
+" vim register goto system register (like ctrl-c):
+nnoremap <leader>c :let @+=@"<CR>
